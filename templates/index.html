@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <form action="/add" method="post">
+        <input id="input" name="input" type="text">
+        <input type="submit" value="Insert">
+    </form>
+    {% for row in content %}
+    <a href="/delete/{{row}}">{{ row }}</a>
+    </br>
+    {% endfor %}
+</body>
+
+</html>
