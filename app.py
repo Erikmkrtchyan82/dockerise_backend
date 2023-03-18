@@ -4,7 +4,7 @@ import signal
 
 app = Flask(__name__)
 
-file = 'text.txt'
+file = 'data/text.txt'
 
 
 def read():
@@ -40,6 +40,7 @@ def home():
 @app.route('/kill')
 def shutdown():
     os.kill(os.getpid(), signal.SIGINT)
+    return redirect('/')
 
 
 @app.route('/delete/<row>')
@@ -54,4 +55,6 @@ def delete(row):
 
 
 if __name__ == "__main__":
+    with open(file, 'a'):
+        pass
     app.run(debug=True, host="0.0.0.0", port="5000")
