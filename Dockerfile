@@ -1,7 +1,7 @@
-FROM python:3.9
+FROM python:3.9-alpine
 
 WORKDIR /app
-RUN pip3 install flask
+RUN pip3 install flask psycopg2-binary redis
 
 COPY . .
 

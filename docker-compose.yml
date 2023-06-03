@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+  backend:
+    build: .
+    ports:
+      - 5000:5000
+    volumes:
+      - backend-vol:/app/data
+    env_file:
+      - .env
+
+  database:
+    image: postgres:15
+    ports:
+      - 5432:5432
+    volumes:
+      - database:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_HOST="localhost"
+      - POSTGRES_PASSWORD=psqlsecret
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=postgres
+    
+  redis:
+    image: redis:7-alpine
+    ports:
+      - 6379:6379
+
+volumes:
+  backend-vol:
+  database:

@@ -1,15 +1,38 @@
 <!DOCTYPE html>
 <html>
-
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+</style>
 <body>
     <form action="/add" method="post">
-        <input id="input" name="input" type="text">
-        <input type="submit" value="Insert">
+        <input id="name" name="name" type="text" placeholder="Name">
+        <input id="surename" name="surename" type="text" placeholder="Surename">
+        <input id="age" name="age" type="number" placeholder="Age">
+        <input type="submit" value="Insert" >
     </form>
-    {% for row in content %}
-    <a href="/delete/{{row}}">{{ row }}</a>
-    </br>
-    {% endfor %}
+    <form action="/reload" method="get">
+        <input type="submit" value="Reload" >
+    </form>
+    <br>
+    <table>
+        {% if content|length != 0  %}
+        <tr>
+            <th>Name</th>
+            <th>Surename</th>
+            <th>Age</th>
+        </tr>
+        {% endif %}
+        {% for id, values in content.items() %}
+        <tr>
+            <td><a href="/delete/{{id}}">{{ values["name"] }}</a></td>
+            <td><a href="/delete/{{id}}">{{ values["surename"] }}</a></td>
+            <td><a href="/delete/{{id}}">{{ values["age"] }}</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
 </body>
 
 </html>
